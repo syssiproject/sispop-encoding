@@ -1,7 +1,7 @@
 #include "common.h"
-#include "oxenc/endian.h"
+#include "sispopc/endian.h"
 
-using namespace oxenc;
+using namespace sispopc;
 
 TEST_CASE("endian swapping", "[endian]") {
     uint8_t u8 = 0x12;

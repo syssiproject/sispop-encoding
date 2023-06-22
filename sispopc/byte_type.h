@@ -6,7 +6,7 @@
 #include <iterator>
 #include <type_traits>
 
-namespace oxenc::detail {
+namespace sispopc::detail {
 
 // Fallback - we just try a char
 template <typename OutputIt, typename = void>

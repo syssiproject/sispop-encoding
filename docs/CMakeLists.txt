@@ -9,23 +9,23 @@ if (NOT SPHINX_BUILD)
     return()
   endif()
   
-set(oxenc_doc_sources "${DOCS_SRC}")
-string(REPLACE ";" " " oxenec_doc_sources_spaced "${oxenc_doc_sources}")
+set(sispopc_doc_sources "${DOCS_SRC}")
+string(REPLACE ";" " " sispopec_doc_sources_spaced "${sispopc_doc_sources}")
 
 add_custom_command(
     OUTPUT doxyxml/index.xml
     COMMAND ${DOXYGEN} Doxyfile
     DEPENDS
         ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-        ${oxenc_doc_sources}
+        ${sispopc_doc_sources}
 )
 
 add_custom_command(
     OUTPUT html/index.html
     COMMAND ${SPHINX_BUILD} -j auto
-        -Dbreathe_projects.oxenc=${CMAKE_CURRENT_BINARY_DIR}/doxyxml
-        -Dversion=${oxenc_VERSION} -Drelease=${oxenc_VERSION}
-        -Aversion=${oxenc_VERSION} -Aversions=${oxenc_VERSION_MAJOR},${oxenc_VERSION_MINOR},${oxenc_VERSION_PATCH}
+        -Dbreathe_projects.sispopc=${CMAKE_CURRENT_BINARY_DIR}/doxyxml
+        -Dversion=${sispopc_VERSION} -Drelease=${sispopc_VERSION}
+        -Aversion=${sispopc_VERSION} -Aversions=${sispopc_VERSION_MAJOR},${sispopc_VERSION_MINOR},${sispopc_VERSION_PATCH}
         -b html
         ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/html
     DEPENDS

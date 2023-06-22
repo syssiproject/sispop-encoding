@@ -1,10 +1,10 @@
 #pragma once
 #include <catch2/catch.hpp>
 #include <unordered_map>
-#include "oxenc/hex.h"
-#include "oxenc/base32z.h"
-#include "oxenc/base64.h"
-#include "oxenc/bt.h"
+#include "sispopc/hex.h"
+#include "sispopc/base32z.h"
+#include "sispopc/base64.h"
+#include "sispopc/bt.h"
 
 
-using namespace oxenc;
+using namespace sispopc;

@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'oxenc'
+project = 'sispopc'
 copyright = '2021, Oxen Project'
 author = 'Oxen Project'
 
@@ -41,15 +41,15 @@ release = ''
 # ones.
 
 extensions = ['breathe', 'exhale']
-breathe_projects = { "oxenc": "@CMAKE_CURRENT_BINARY_DIR@/doxyxml/" }
-breathe_default_project = "oxenc"
+breathe_projects = { "sispopc": "@CMAKE_CURRENT_BINARY_DIR@/doxyxml/" }
+breathe_default_project = "sispopc"
 breathe_domain_by_extension = {"h" : "cpp", "hpp": "cpp"}
 
 exhale_args = {
     # These arguments are required
     "containmentFolder":     "./api",
-    "rootFileName":          "oxenc.rst",
-    "rootFileTitle":         "oxenc internals",
+    "rootFileName":          "sispopc.rst",
+    "rootFileTitle":         "sispopc internals",
     "doxygenStripFromPath":  "..",
     # Suggested optional arguments
     "createTreeView":        True,
@@ -117,7 +117,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'oxencdoc'
+htmlhelp_basename = 'sispopcdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -144,8 +144,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'oxenc.tex', 'Oxenc Documentation',
-     'Oxen Project', 'manual'),
+    (master_doc, 'sispopc.tex', 'Sispopc Documentation',
+     'Sispop Project', 'manual'),
 ]
 
 
@@ -154,7 +154,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'oxenc', 'Oxenc Documentation',
+    (master_doc, 'sispopc', 'Sispopc Documentation',
      [author], 1)
 ]
 
@@ -165,8 +165,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'oxenc', 'oxenc Documentation',
-     author, 'oxenc', 'Base 16/32/64 and Bittorrent Encoding/Decoding Header Only Library',
+    (master_doc, 'sispopc', 'sispopc Documentation',
+     author, 'sispopc', 'Base 16/32/64 and Bittorrent Encoding/Decoding Header Only Library',
      'Miscellaneous'),
 ]
 

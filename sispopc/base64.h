@@ -6,7 +6,7 @@
 #include <cassert>
 #include "byte_type.h"
 
-namespace oxenc {
+namespace sispopc {
 
 namespace detail {
 

@@ -8,14 +8,14 @@
 #include <utility>
 #include "variant.h"
 
-namespace oxenc {
+namespace sispopc {
 
     using namespace std::literals;
 
     class bt_dict_producer;
 
 #if defined(__APPLE__) && defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED < 101500
-#define OXENC_APPLE_TO_CHARS_WORKAROUND
+#define SISPOPC_APPLE_TO_CHARS_WORKAROUND
 /// Really simplistic version of std::to_chars on Apple, because Apple doesn't allow `std::to_chars`
 /// to be used if targetting anything before macOS 10.15.  The buffer must have at least 20 chars of
 /// space (for int types up to 64-bit); we return a pointer one past the last char written.
@@ -99,7 +99,7 @@ namespace oxenc {
         char* write_integer(IntType val, char* buf) {
             static_assert(sizeof(IntType) <= 64);
 
-#ifndef OXENC_APPLE_TO_CHARS_WORKAROUND
+#ifndef SISPOPC_APPLE_TO_CHARS_WORKAROUND
             auto [ptr, ec] = std::to_chars(buf, buf+20, val);
             assert(ec == std::errc());
             return ptr;
@@ -432,4 +432,4 @@ namespace oxenc {
         return bt_dict_producer{this};
     }
 
-} // namespace oxenc
+} // namespace sispopc

@@ -15,9 +15,9 @@ if(CCACHE_PROGRAM)
   endforeach()
 endif()
 
-project(oxenc
+project(sispopc
     VERSION 1.0.4
-    DESCRIPTION "oxenc - Base 16/32/64 and Bittorrent Encoding/Decoding Header Only Library"
+    DESCRIPTION "sispopc - Base 16/32/64 and Bittorrent Encoding/Decoding Header Only Library"
     LANGUAGES CXX)
 
 
@@ -27,73 +27,73 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(GNUInstallDirs)
 
-message(STATUS "oxenc v${PROJECT_VERSION}")
+message(STATUS "sispopc v${PROJECT_VERSION}")
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    set(oxenc_IS_TOPLEVEL_PROJECT TRUE)
+    set(sispopc_IS_TOPLEVEL_PROJECT TRUE)
 else()
-    set(oxenc_IS_TOPLEVEL_PROJECT FALSE)
+    set(sispopc_IS_TOPLEVEL_PROJECT FALSE)
 endif()
 
-option(OXENC_BUILD_TESTS "Building and perform oxenc tests" ${oxenc_IS_TOPLEVEL_PROJECT})
-option(OXENC_BUILD_DOCS "Build oxenc documentation" ${oxenc_IS_TOPLEVEL_PROJECT})
-option(OXENC_INSTALL "Add oxenc headers to install target" ${oxenc_IS_TOPLEVEL_PROJECT})
+option(SISPOPC_BUILD_TESTS "Building and perform sispopc tests" ${sispopc_IS_TOPLEVEL_PROJECT})
+option(SISPOPC_BUILD_DOCS "Build sispopc documentation" ${sispopc_IS_TOPLEVEL_PROJECT})
+option(SISPOPC_INSTALL "Add sispopc headers to install target" ${sispopc_IS_TOPLEVEL_PROJECT})
 
 
-configure_file(oxenc/version.h.in oxenc/version.h @ONLY)
-configure_file(liboxenc.pc.in liboxenc.pc @ONLY)
+configure_file(sispopc/version.h.in sispopc/version.h @ONLY)
+configure_file(libsispopc.pc.in libsispopc.pc @ONLY)
 
 
-add_library(oxenc INTERFACE)
+add_library(sispopc INTERFACE)
 
-target_include_directories(oxenc
+target_include_directories(sispopc
     INTERFACE
         $<INSTALL_INTERFACE:>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
-add_library(oxenc::oxenc ALIAS oxenc)
+add_library(sispopc::sispopc ALIAS sispopc)
 
 export(
-    TARGETS oxenc
-    NAMESPACE oxenc::
-    FILE oxencTargets.cmake
+    TARGETS sispopc
+    NAMESPACE sispopc::
+    FILE sispopcTargets.cmake
 )
 
-if(OXENC_INSTALL)
+if(SISPOPC_INSTALL)
   install(
-    TARGETS oxenc
-    EXPORT oxencConfig
+    TARGETS sispopc
+    EXPORT sispopcConfig
     DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 
   install(
     FILES
-    oxenc/base32z.h
-    oxenc/base64.h
-    oxenc/bt.h
-    oxenc/bt_producer.h
-    oxenc/bt_serialize.h
-    oxenc/bt_value.h
-    oxenc/byte_type.h
-    oxenc/endian.h
-    oxenc/hex.h
-    oxenc/variant.h
-    ${CMAKE_CURRENT_BINARY_DIR}/oxenc/version.h
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/oxenc
+    sispopc/base32z.h
+    sispopc/base64.h
+    sispopc/bt.h
+    sispopc/bt_producer.h
+    sispopc/bt_serialize.h
+    sispopc/bt_value.h
+    sispopc/byte_type.h
+    sispopc/endian.h
+    sispopc/hex.h
+    sispopc/variant.h
+    ${CMAKE_CURRENT_BINARY_DIR}/sispopc/version.h
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/sispopc
     )
 
 
   install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/liboxenc.pc
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/libsispopc.pc
     DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig
     )
 endif()
 
 
-if(OXENC_BUILD_DOCS)
+if(SISPOPC_BUILD_DOCS)
   add_subdirectory(docs)
 endif()
 
-if(OXENC_BUILD_TESTS)
+if(SISPOPC_BUILD_TESTS)
   add_subdirectory(tests)
 endif()

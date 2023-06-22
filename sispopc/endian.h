@@ -22,7 +22,7 @@ extern "C" {
 #  error "Don't know how to byteswap on this platform!"
 #endif
 
-namespace oxenc {
+namespace sispopc {
 
     /// True if this is a little-endian platform
     inline constexpr bool little_endian =
@@ -201,4 +201,4 @@ namespace oxenc {
         std::memcpy(to, &val, sizeof(T));
     }
 
-} // namespace oxenc
+} // namespace sispopc
