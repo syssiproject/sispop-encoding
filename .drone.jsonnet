@@ -1,4 +1,4 @@
-local docker_base = 'registry.oxen.rocks/lokinet-ci-';
+local docker_base = 'registry.sispop.rocks/lokinet-ci-';
 
 local submodule_commands = ['git fetch --tags', 'git submodule update --init --recursive --depth=1'];
 

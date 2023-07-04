@@ -18,12 +18,12 @@
 
 #include "bt_value.h"
 
-namespace oxenc {
+namespace sispopc {
 
 using namespace std::literals;
 
 /** \file
- * Oxenc serialization for internal commands is very simple: we support two primitive types,
+ * Sispopc serialization for internal commands is very simple: we support two primitive types,
  * strings and integers, and two container types, lists and dicts with string keys.  On the wire
  * these go in BitTorrent byte encoding as described in BEP-0003
  * (https://www.bittorrent.org/beps/bep_0003.html#bencoding).
@@ -570,7 +570,7 @@ template <typename T, typename It>
 void get_tuple_impl_one(T& t, It& it) {
     const bt_variant& v = *it++;
     if constexpr (std::is_integral_v<T>) {
-        t = oxenc::get_int<T>(v);
+        t = sispopc::get_int<T>(v);
     } else if constexpr (is_bt_tuple<T>) {
         if (std::holds_alternative<bt_list>(v))
             throw std::invalid_argument{"Unable to convert tuple: cannot create sub-tuple from non-bt_list"};
@@ -1080,4 +1080,4 @@ inline void bt_deserialize<bt_value, void>::operator()(std::string_view& s, bt_v
 
 } // namespace detail
 
-} // namespace oxenc
+} // namespace sispopc

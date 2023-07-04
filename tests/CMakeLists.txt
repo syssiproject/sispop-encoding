@@ -16,7 +16,7 @@ add_executable(tests ${TEST_SRC})
 
 find_package(Threads)
 
-target_link_libraries(tests Catch2::Catch2 oxenc)
+target_link_libraries(tests Catch2::Catch2 sispopc)
 
 set_target_properties(tests PROPERTIES
     CXX_STANDARD 17

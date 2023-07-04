@@ -128,10 +128,10 @@ TEST_CASE("bt_value deserialization", "[bt][deserialization][bt_value]") {
     REQUIRE( var::get<int64_t>(dna2) == -42 );
     REQUIRE_THROWS( var::get<int64_t>(dna1) );
     REQUIRE_THROWS( var::get<uint64_t>(dna2) );
-    REQUIRE( oxenc::get_int<int>(dna1) == 42 );
-    REQUIRE( oxenc::get_int<int>(dna2) == -42 );
-    REQUIRE( oxenc::get_int<unsigned>(dna1) == 42 );
-    REQUIRE_THROWS( oxenc::get_int<unsigned>(dna2) );
+    REQUIRE( sispopc::get_int<int>(dna1) == 42 );
+    REQUIRE( sispopc::get_int<int>(dna2) == -42 );
+    REQUIRE( sispopc::get_int<unsigned>(dna1) == 42 );
+    REQUIRE_THROWS( sispopc::get_int<unsigned>(dna2) );
 
     bt_value x = bt_deserialize<bt_value>("d3:barle3:foold1:ali1ei2ei3ee1:bleed1:cli-5ei4eeeee");
     REQUIRE( std::holds_alternative<bt_dict>(x) );
@@ -149,9 +149,9 @@ TEST_CASE("bt_value deserialization", "[bt][deserialization][bt_value]") {
     bt_list& foo1b = var::get<bt_list>(foo1.at("b"));
     bt_list& foo2c = var::get<bt_list>(foo2.at("c"));
     std::list<int> foo1a_vals, foo1b_vals, foo2c_vals;
-    for (auto& v : foo1a) foo1a_vals.push_back(oxenc::get_int<int>(v));
-    for (auto& v : foo1b) foo1b_vals.push_back(oxenc::get_int<int>(v));
-    for (auto& v : foo2c) foo2c_vals.push_back(oxenc::get_int<int>(v));
+    for (auto& v : foo1a) foo1a_vals.push_back(sispopc::get_int<int>(v));
+    for (auto& v : foo1b) foo1b_vals.push_back(sispopc::get_int<int>(v));
+    for (auto& v : foo2c) foo2c_vals.push_back(sispopc::get_int<int>(v));
     REQUIRE( foo1a_vals == std::list{{1,2,3}} );
     REQUIRE( foo1b_vals == std::list<int>{} );
     REQUIRE( foo2c_vals == std::list{{-5, 4}} );
@@ -288,33 +288,33 @@ TEST_CASE("bt allocation-free producer", "[bt][dict][list][producer]") {
     }
 }
 
-#ifdef OXENC_APPLE_TO_CHARS_WORKAROUND
+#ifdef SISPOPC_APPLE_TO_CHARS_WORKAROUND
 TEST_CASE("apple to_chars workaround test", "[bt][apple][sucks]") {
     char buf[20];
     auto buf_view = [&](char* end) { return std::string_view{buf, static_cast<size_t>(end - buf)}; };
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 0)) == "0" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 1)) == "1" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 2)) == "2" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 10)) == "10" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 42)) == "42" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 99)) == "99" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, 1234567890)) == "1234567890" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, -1)) == "-1" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, -2)) == "-2" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, -10)) == "-10" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, -99)) == "-99" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, -1234567890)) == "-1234567890" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, char{42})) == "42" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, (unsigned char){42})) == "42" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, short{42})) == "42" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, std::numeric_limits<char>::min())) == "-128" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, std::numeric_limits<char>::max())) == "127" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, (unsigned char){42})) == "42" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, std::numeric_limits<uint64_t>::max())) == "18446744073709551615" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, int64_t{-1})) == "-1" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, std::numeric_limits<int64_t>::min())) == "-9223372036854775808" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, int64_t{-9223372036854775807})) == "-9223372036854775807" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, int64_t{9223372036854775807})) == "9223372036854775807" );
-    CHECK( buf_view(oxenc::apple_to_chars10(buf, int64_t{9223372036854775806})) == "9223372036854775806" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 0)) == "0" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 1)) == "1" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 2)) == "2" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 10)) == "10" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 42)) == "42" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 99)) == "99" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, 1234567890)) == "1234567890" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, -1)) == "-1" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, -2)) == "-2" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, -10)) == "-10" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, -99)) == "-99" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, -1234567890)) == "-1234567890" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, char{42})) == "42" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, (unsigned char){42})) == "42" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, short{42})) == "42" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, std::numeric_limits<char>::min())) == "-128" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, std::numeric_limits<char>::max())) == "127" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, (unsigned char){42})) == "42" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, std::numeric_limits<uint64_t>::max())) == "18446744073709551615" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, int64_t{-1})) == "-1" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, std::numeric_limits<int64_t>::min())) == "-9223372036854775808" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, int64_t{-9223372036854775807})) == "-9223372036854775807" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, int64_t{9223372036854775807})) == "9223372036854775807" );
+    CHECK( buf_view(sispopc::apple_to_chars10(buf, int64_t{9223372036854775806})) == "9223372036854775806" );
 }
 #endif
